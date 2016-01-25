@@ -1,1 +1,29 @@
 /* CSS declarations go here */
+
+.square {
+    float:left;
+    position: relative;
+    width: 30%;
+    padding-bottom: 30%; /* = width for a 1:1 aspect ratio */
+    margin:1.66%;
+    overflow:hidden;
+}
+
+.content {
+    position:absolute;
+    height:80%; /* = 100% - 2*10% padding */
+    width:90%; /* = 100% - 2*5% padding */
+    padding: 10% 5%;
+    background-color: #ccccff;
+}
+.content:hover {
+    background-color: #cc99ff;
+}
+
+
+.hint-center-goal {
+    visibility: hidden;
+}
+.hint-center-goal:hover {
+    visibility: visible;
+}

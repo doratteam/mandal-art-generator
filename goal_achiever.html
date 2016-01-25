@@ -16,26 +16,60 @@
     </div>
     </nav>
 
-
-
-
-  <h1>만다라트 생성기</h1>
   {{> goalGrid}}
   {{> download}}
 </body>
 
 
 <template name="goalGrid">
-    <div class="grid col-md-12">
-        <div class="col-md-4">
-            test    
+    <div class="grid">
+    <div class="grid-row col-xs-12">
+        <div class="square col-xs-4">
+            <div class="content" contenteditable>
+            
+            </div>
         </div>
-        <div class="col-md-4">
-            test
+        <div class="square col-xs-4">
+            <div class="content text-center" contenteditable>
+            </div>
         </div>
-        <div class="col-md-4">
-                test
+        <div class="square col-xs-4">
+            <div class="content text-center" contenteditable>
+            </div>
         </div>
+    </div>
+        <div class="grid-row col-xs-12">
+        <div class="square col-xs-4">
+            <div class="content text-center" contenteditable>
+            </div>    
+        </div>
+        <div class="square col-xs-4">
+
+            <div class="content text-center" contenteditable>
+            <span class="hint-center-goal">
+                최종 목표
+            </span>
+            </div>
+        </div>
+        <div class="square col-xs-4">
+            <div class="content text-center" contenteditable>
+            </div>
+        </div>
+    </div>
+        <div class="grid-row col-xs-12">
+        <div class="square col-xs-4">
+            <div class="content text-center" contenteditable>
+            </div>    
+        </div>
+        <div class="square col-xs-4">
+            <div class="content text-center" contenteditable>
+            </div>
+        </div>
+        <div class="square col-xs-4">
+            <div class="content text-center" contenteditable>
+            </div>
+        </div>
+    </div>
     </div>
     <button>Continue</button>
 </template>
