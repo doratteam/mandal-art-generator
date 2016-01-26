@@ -14,6 +14,12 @@ if (Meteor.isClient) {
       Session.set('counter', Session.get('counter') + 1);
     }
   });
+
+  Template.goalGrid.events({
+    'click sub-goal': function() {
+      alert("test");
+    }
+  });
 }
 
 if (Meteor.isServer) {
