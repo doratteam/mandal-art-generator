@@ -19,7 +19,6 @@ if (Meteor.isClient) {
       } else {
         alert("You're not done yet!");
       }
-      Session.set('counter', Session.get('counter') + 1);
     }
   });
 
@@ -28,28 +27,46 @@ if (Meteor.isClient) {
       // CONTINUE BUTTON
 
       if (Session.get('mainGoalSet')) { // If the main goal is set, remove the current subGoal from todo and continue
-        var subGoal = template.find('.mainGoal'),
-            tasks = template.findAll('.subGoal');
+        var subGoal = template.find('.mainGoal').textContent,
+            tasks = template.findAll('.subGoal'),
+            goalJSON = Session.get('goalJSON');
 
-            // TODO
+            var curGoal = Session.get('counter');
+            console.log(goalJSON['subGoals'][curGoal]);
 
-            
-      } else { // Otherwise, initialize the main goal and subgoal
-        var mainGoal = template.find('.mainGoal'),
-            subGoals = template.findAll('.subGoal'),
-            goalJSON = {}; // JSON object to store all goals
-            goalJSON['mainGoal'] = mainGoal.textContent;
-            goalJSON['subGoals'] = {};
 
-            for (var i = 0; i < subGoals.length; i++) {
-              goalJSON['subGoals'][i] = {
-                'content': subGoals[i].textContent,
-                'filled': false,
-              };
+        for (var i = 0; i < tasks.length; i++) {
+            console.log(tasks[i].textContent);
+            if (tasks[i].textContent) {
+              goalJSON['subGoals'][curGoal]['tasks'][i] = tasks[i].textContent;
+            } else { // didn't fill in all the boxes. not good.
+              alert('Please fill in EVERY box!');
+              return;
             }
-            Session.set('goalJSON', goalJSON);
-            Session.set('mainGoalSet', true);
-            nextGoal();
+        }
+
+        goalJSON['subGoals'][curGoal]['filled'] = true; // this subgoal's tasks are filled now
+        Session.set('goalJSON', goalJSON); // update goal json
+        nextGoal();
+
+      } else { // Otherwise, initialize the main goal and subgoal
+          var mainGoal = template.find('.mainGoal'),
+              subGoals = template.findAll('.subGoal'),
+              goalJSON = {}; // JSON object to store all goals
+          goalJSON['mainGoal'] = mainGoal.textContent;
+          goalJSON['subGoals'] = {};
+
+          for (var i = 0; i < subGoals.length; i++) {
+              goalJSON['subGoals'][i] = {
+                  'content': subGoals[i].textContent,
+                  'filled': false,
+                  'tasks': {},
+              };
+          }
+          Session.set('goalJSON', goalJSON);
+          Session.set('mainGoalSet', true);
+          $('.mainGoal').attr('contenteditable', false);
+          nextGoal();
       }
     }
   });
@@ -66,25 +83,30 @@ var parseInput = function(someStr) {
 };
 
 var newGoal = function(goalStr) {
-  
-  $('.text').fadeOut(800);
-  $('.mainGoal').append(goalStr);
-  console.log(Session.get('goalJSON'));
-  
+  console.log('in NEWGOAL');
+  $('.text').fadeOut(400);
+  $('.text-main').fadeOut(800, function() {
+    $('.mainGoal').html('<span class="text-main">' + goalStr + '</span>');
+    $('.subGoal').html(getEmptySpan());
+  });
 };
 
 var nextGoal = function() {
   var goalJSON = Session.get('goalJSON'),
-      nextGoal = '',
+      nextGoalStr = '',
       subGoals = goalJSON['subGoals'];
   for (var i = 0; i < 8; i++) {
     var goal = subGoals[i];
     if (goal['filled'] == false) {
-      nextGoal = goal['content'];
+      nextGoalStr = goal['content'];
       break;
     }
   }
-  console.log(nextGoal);
+  console.log(nextGoalStr);
 
-  newGoal(nextGoal);
+  newGoal(nextGoalStr);
+};
+
+var getEmptySpan = function() {
+  return '<span class="text"></span>';
 };
