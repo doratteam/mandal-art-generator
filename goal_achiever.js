@@ -3,6 +3,7 @@ if (Meteor.isClient) {
   Session.setDefault('counter', 0);
   Session.setDefault('isDone', false);
   Session.setDefault('mainGoalSet', false);
+  Session.setDefault('goalJSON', {});
 
   Template.download.helpers({
     counter: function () {
@@ -22,22 +23,34 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.goalGrid.helpers({
-    isDone: function() {
-      return Session.get('isDone');
-    },
-  });
-
   Template.goalGrid.events({
     'click button': function(e, template) {
-      //console.log(template);
-      var mainGoal = template.find('.mainGoal').textContent,
-        subGoals = template.findAll('.subGoal');
+      // CONTINUE BUTTON
 
-        Session.set('mainGoal', mainGoal);
-        Session.set('subGoals', subGoals);
+      if (Session.get('mainGoalSet')) { // If the main goal is set, remove the current subGoal from todo and continue
+        var subGoal = template.find('.mainGoal'),
+            tasks = template.findAll('.subGoal');
 
-        nextGoal();
+            // TODO
+
+            
+      } else { // Otherwise, initialize the main goal and subgoal
+        var mainGoal = template.find('.mainGoal'),
+            subGoals = template.findAll('.subGoal'),
+            goalJSON = {}; // JSON object to store all goals
+            goalJSON['mainGoal'] = mainGoal.textContent;
+            goalJSON['subGoals'] = {};
+
+            for (var i = 0; i < subGoals.length; i++) {
+              goalJSON['subGoals'][i] = {
+                'content': subGoals[i].textContent,
+                'filled': false,
+              };
+            }
+            Session.set('goalJSON', goalJSON);
+            Session.set('mainGoalSet', true);
+            nextGoal();
+      }
     }
   });
 }
@@ -53,17 +66,25 @@ var parseInput = function(someStr) {
 };
 
 var newGoal = function(goalStr) {
+  
   $('.text').fadeOut(800);
   $('.mainGoal').append(goalStr);
-  /*
-  $('.mainGoal').fadeOut(400, function() {
-    $('.subGoal').fadeOut();
-  });
-  */
+  console.log(Session.get('goalJSON'));
+  
 };
 
-var nextGoal = function(subGoalArray, template) {
-  var mainGoal = subGoalArray[0].textContent;
-  console.log(mainGoal);
-  newGoal(mainGoal);
+var nextGoal = function() {
+  var goalJSON = Session.get('goalJSON'),
+      nextGoal = '',
+      subGoals = goalJSON['subGoals'];
+  for (var i = 0; i < 8; i++) {
+    var goal = subGoals[i];
+    if (goal['filled'] == false) {
+      nextGoal = goal['content'];
+      break;
+    }
+  }
+  console.log(nextGoal);
+
+  newGoal(nextGoal);
 };
