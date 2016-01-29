@@ -1,5 +1,9 @@
 /* CSS declarations go here */
 
+body {
+    background-color:    #404040;
+}
+
 .square {
     float:left;
     position: relative;
@@ -14,14 +18,15 @@
     height:80%; /* = 100% - 2*10% padding */
     width:90%; /* = 100% - 2*5% padding */
     padding: 10% 5%;
-    background-color: #ccccff;
+    background-color: #ccffff
+;
 }
-.main-goal {
+.mainGoal {
     position:absolute;
     height:80%; /* = 100% - 2*10% padding */
     width:90%; /* = 100% - 2*5% padding */
     padding: 10% 5%;
-    background-color: #cc99ff;
+    background-color: #99ffff;
 }
 
 .hint-center-goal {

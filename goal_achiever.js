@@ -16,8 +16,10 @@ if (Meteor.isClient) {
   });
 
   Template.goalGrid.events({
-    'click sub-goal': function() {
-      alert("test");
+    'click button': function(e, template) {
+      console.log(template);
+      var mainGoal = template.find('.mainGoal');
+      console.log(mainGoal);
     }
   });
 }
