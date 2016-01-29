@@ -11,7 +11,7 @@
 
 - To begin, you should fill in your most important goal in the middle grid. (i.e.To become the best hacker in town)
 
-- Then think about 8 things you need to do to achieve this goal. 
+- Then think about 8 things you need to do to achieve this goal. (i.e. Study JavaScript, Master computer architecture, Learn how to code C like a boss, etc.) 
 
 - Click "Continue", and it will take you through the 8 things you need to do to achieve that goal. Now think about 8 different ways you might achieve each of them. 
 
