@@ -1,9 +1,9 @@
-#Manda-la-art-generator
+#Mandal Art-generator
 
 
-### What is a mandala art? 
+### What is a mandal art? 
 
-- Manda la art is a technique developed by a Japanese designer. It helps you to brainstorm an idea, by forcing you to generate 8 different ways to achieve something, and then again thinking about 8 different ways to achieve each of those ways. 
+- Mandal art is a technique developed by a Japanese designer. It helps you to brainstorm an idea, by forcing you to generate 8 different ways to achieve something, and then again thinking about 8 different ways to achieve each of those ways. 
 
 - We made this so that you can easily set your goal and think about how you might achieve that goal. 
 
