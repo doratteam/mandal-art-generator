@@ -28,15 +28,26 @@ if (Meteor.isClient) {
             }
         }
 
-        $('.mandalart-table').attr('display', 'block');
+
+        // Formulate the mandalart table
         goalJSON = Session.get('goalJSON');
         $('.mainGoal_tb').text(goalJSON['mainGoal']);
         subGoals = goalJSON['subGoals'];
-        for(var i = 0; i < 7; i++) {
-          subGoal = subGoal[i];
+        for(var i = 0; i < 8; i++) {
+          var subGoal = subGoals[i];
           var subGoalTag = '.subGoal' + (i+1);
-          $(subGoalTag).text(subGoal[i]['content']);
+          $(subGoalTag).text(subGoal['content']); // Make the subgoals appear
+          for (var j = 0; j < 8; j++) { // Make the tasks appear
+            var taskTag = '.task_' + (i+1) + '_' + (j+1);
+            $(taskTag).text(subGoal['tasks'][j]);
+          }
         }
+
+        $('.goalGrid').fadeOut(400, function() {
+          $('.mandalart-table').fadeIn();
+        }); // Fade out the goal Grid and bring the mandalart table to visible
+
+
 
         alert('TODO: Download');
       } else {

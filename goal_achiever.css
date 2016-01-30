@@ -35,3 +35,15 @@ body {
 .hint-center-goal:hover {
     visibility: visible;
 }
+
+.mainGoal_tb {
+    background-color: #0099ff;
+}
+
+.subGoal {
+    background-color: #b3e0ff;
+}
+
+.task {
+    background-color: #e5f5ff;
+}
