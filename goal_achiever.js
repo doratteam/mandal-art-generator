@@ -28,6 +28,10 @@ if (Meteor.isClient) {
             }
         }
 
+        Session.set('counter', curGoal + 1);
+        goalJSON['subGoals'][curGoal]['filled'] = true; // this subgoal's tasks are filled now
+        Session.set('goalJSON', goalJSON); // update goal json
+
 
         // Formulate the mandalart table
         goalJSON = Session.get('goalJSON');
@@ -47,9 +51,6 @@ if (Meteor.isClient) {
           $('.mandalart-table').fadeIn();
         }); // Fade out the goal Grid and bring the mandalart table to visible
 
-
-
-        alert('TODO: Download');
       } else {
         alert("You're not done yet!");
       }
