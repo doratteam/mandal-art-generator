@@ -12,9 +12,32 @@ if (Meteor.isClient) {
   });
 
   Template.download.events({
-    'click button': function () {
+    'click button': function (e, template) {
       // increment the counter when button is clicked
       if (Session.get('isDone')) {
+        var tasks = template.findAll('.subGoal'),
+            goalJSON = Session.get('goalJSON');
+
+        for (var i = 0; i < tasks.length; i++) {
+            console.log(tasks[i].textContent);
+            if (tasks[i].textContent) {
+              goalJSON['subGoals'][curGoal]['tasks'][i] = tasks[i].textContent;
+            } else { // didn't fill in all the boxes. not good.
+              alert('Please fill in EVERY box!');
+              return;
+            }
+        }
+
+        $('.mandalart-table').attr('display', 'block');
+        goalJSON = Session.get('goalJSON');
+        $('.mainGoal_tb').text(goalJSON['mainGoal']);
+        subGoals = goalJSON['subGoals'];
+        for(var i = 0; i < 7; i++) {
+          subGoal = subGoal[i];
+          var subGoalTag = '.subGoal' + (i+1);
+          $(subGoalTag).text(subGoal[i]['content']);
+        }
+
         alert('TODO: Download');
       } else {
         alert("You're not done yet!");
@@ -45,6 +68,7 @@ if (Meteor.isClient) {
             }
         }
 
+        Session.set('counter', curGoal + 1);
         goalJSON['subGoals'][curGoal]['filled'] = true; // this subgoal's tasks are filled now
         Session.set('goalJSON', goalJSON); // update goal json
         nextGoal();
@@ -98,6 +122,10 @@ var nextGoal = function() {
   for (var i = 0; i < 8; i++) {
     var goal = subGoals[i];
     if (goal['filled'] == false) {
+      if (i === 7) { // this is the last goal to fill in. disable the continue button
+        $('.continue-btn').attr('disabled', true);
+        Session.set('isDone', true);
+      }
       nextGoalStr = goal['content'];
       break;
     }
