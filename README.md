@@ -16,3 +16,15 @@
 - Click "Continue", and it will take you through the 8 things you need to do to achieve that goal. Now think about 8 different ways you might achieve each of them. 
 
 - When you're done, click "Download". 
+
+
+### Running this locally
+
+- Mandal-art-generator is built using <a href="http://www.meteor.com">Meteor</a>. Follow these steps to run this locally. 
+
+```
+Install Meteor
+git clone https://github.com/doratteam/mandal-art-generator.git
+cd mandal-art-generator
+meteor
+```
