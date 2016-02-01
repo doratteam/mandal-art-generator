@@ -20,10 +20,9 @@
 
 ### Running this locally
 
-- Mandal-art-generator is built using <a href="http://www.meteor.com">Meteor</a>. Follow these steps to run this locally. 
+- Mandal-art-generator is built using <a href="http://www.meteor.com">Meteor</a>. Install Meteor and follow these steps to run this locally. 
 
 ```
-Install Meteor
 git clone https://github.com/doratteam/mandal-art-generator.git
 cd mandal-art-generator
 meteor
