@@ -15,11 +15,10 @@ if (Meteor.isClient) {
     'click button': function (e, template) {
       // increment the counter when button is clicked
       if (Session.get('isDone')) {
-        var tasks = template.findAll('.subGoal'),
+        var tasks = $('.subGoal'),
             goalJSON = Session.get('goalJSON');
 
-        for (var i = 0; i < tasks.length; i++) {
-            console.log(tasks[i].textContent);
+        for (var i = 0; i < 8; i++) {
             if (tasks[i].textContent) {
               goalJSON['subGoals'][curGoal]['tasks'][i] = tasks[i].textContent;
             } else { // didn't fill in all the boxes. not good.
@@ -28,10 +27,8 @@ if (Meteor.isClient) {
             }
         }
 
-        Session.set('counter', curGoal + 1);
         goalJSON['subGoals'][curGoal]['filled'] = true; // this subgoal's tasks are filled now
         Session.set('goalJSON', goalJSON); // update goal json
-
 
         // Formulate the mandalart table
         goalJSON = Session.get('goalJSON');
@@ -64,14 +61,11 @@ if (Meteor.isClient) {
       if (Session.get('mainGoalSet')) { // If the main goal is set, remove the current subGoal from todo and continue
         var subGoal = template.find('.mainGoal').textContent,
             tasks = template.findAll('.subGoal'),
-            goalJSON = Session.get('goalJSON');
-
-            var curGoal = Session.get('counter');
-            console.log(goalJSON['subGoals'][curGoal]);
+            goalJSON = Session.get('goalJSON'),
+            curGoal = Session.get('counter');
 
 
         for (var i = 0; i < tasks.length; i++) {
-            console.log(tasks[i].textContent);
             if (tasks[i].textContent) {
               goalJSON['subGoals'][curGoal]['tasks'][i] = tasks[i].textContent;
             } else { // didn't fill in all the boxes. not good.
@@ -119,7 +113,6 @@ var parseInput = function(someStr) {
 };
 
 var newGoal = function(goalStr) {
-  console.log('in NEWGOAL');
   $('.text').fadeOut(400);
   $('.text-main').fadeOut(800, function() {
     $('.mainGoal').html('<span class="text-main">' + goalStr + '</span>');
@@ -142,8 +135,6 @@ var nextGoal = function() {
       break;
     }
   }
-  console.log(nextGoalStr);
-
   newGoal(nextGoalStr);
 };
 
