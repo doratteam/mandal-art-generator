@@ -1,6 +1,10 @@
 #Mandal Art-generator
 
 
+### Use
+- <a href="mandalart.meteor.com">Try it out here</a>
+
+
 ### What is a mandal art? 
 
 - Mandal art is a technique developed by a Japanese designer. It helps you to brainstorm an idea, by forcing you to generate 8 different ways to achieve something, and then again thinking about 8 different ways to achieve each of those ways. 
