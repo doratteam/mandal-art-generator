@@ -2,7 +2,7 @@
 
 
 ### Use
-- <a href="mandalart.meteor.com">Try it out here</a>
+- <a href="http://mandalart.meteor.com">Try it out here</a>
 
 
 ### What is a mandal art? 
